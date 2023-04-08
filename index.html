@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <meta charset="UTF-8">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+
+  <body>
+    <nav id="nav-bar">
+      <div class="logo">
+        <div class="img-wrapper">
+          <img id="header-img" src="./barcelos-outline-fff8f0.png" alt="Portuguese rooster, logo for A Placa Porto">
+        </div>
+        <p id="header-name">A Placa Porto</p>
+      </div>
+      <div class="nav-menu">
+        <a class="nav-link" href="#reservation">Reservation</a>
+        <a class="nav-link" href="#menu">Order online</a>
+        <a class="nav-link" href="#newsletter">Events</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="welcome-card">
+          <h1>Welcome to <br>A Placa Porto</h1>
+          <p>Contemporary Portuguese Cuisine</p>
+          <a class="btn dark" href="#">Order Online</a>
+        </div>
+      </section>  
+      <article id="intro">
+        <div class="hello">
+          <p class="pitch">Combining traditional flavors with a modern twist, A Placa Porto offers a fresh, creative take on Portuguese cuisine.</p>
+          <video controls>
+            <source src="./landingpg-celebration.mp4"/>
+          </video>
+        </div>
+      </article>
+      <article id="reservation">
+        <div class="book-table">
+          <div class="rsv-img"></div>
+          <div class="rsv-details">
+            <h2>Perfect for any occasion</h2>
+            <p>Celebrating a special day or having a night out with friends and family, our top-notch service, friendly atmosphere and live music welcomes you to experience the warmth and charm of Portugal.</p>
+            <a class="btn light" href="#">Reserve a table</a>
+            <div class="op-hours">
+              <p>Hours</p>
+              <ul>
+                <li>Mon-Fri: 10am - 10pm</li>
+                <li>Sat: 12pm - 10pm</li>
+                <li>Sun: 9am - 3pm</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article id="menu">
+        <div class="view-menu">
+          <h2>Our menu changes daily with fresh in-season ingredients sourced directly from our local farmers markets</h2>
+          <a class="btn light">View menu</a>
+          <div class="menu-card">
+            <p class="menu-special">Today's Special</p>
+            <div class="menu-dish">
+              <p>Bacalhau à Brás</p>
+            </div>
+          </div>
+        </div>
+      </article>
+      <article id="newsletter">
+        <div class="subscribe">
+          <form class="subscr-form" id="form">
+            <h2>Join our monthly community events!</h2>
+            <p>We partner with community organizers and local businesses to host monthly events, from wine pairings to family nights.</p>
+            <p class="lastp">Sign up for our newsletter to find out what's happening at A Placa Porto this month!</p>
+            <label>Enter your email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <button type="submit" id="submit">Subscribe</button>
+          </form>
+          <div class="subscr-img"></div>
+        </div>
+      </article>
+    </main>
+  
+    <footer><p class="copyright"><small>&#169; 2023 by A Placa Porto</small></p></footer>
+  </body>
+</html>
