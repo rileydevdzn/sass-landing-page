@@ -47,7 +47,8 @@ header input:checked ~ nav {
 header input:checked ~ .overlay {
   visibility: visible;
 }
-header .overlay {
+
+.overlay {
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
@@ -84,13 +85,6 @@ nav {
   transition-duration: 0.2s;
   transition-timing-function: ease;
 }
-nav .logo-img {
-  width: 3.75rem;
-  padding: 0 5px 5px 0;
-}
-nav .logo {
-  font-size: 1.5rem;
-}
 nav li {
   width: 150%;
   max-width: 17.8125rem;
@@ -118,6 +112,15 @@ nav a:hover {
   color: hsl(6, 96%, 18%);
 }
 
+.logo-img {
+  width: 3.75rem;
+  padding: 0 5px 5px 0;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
 .hero {
   width: 100%;
   height: clamp(20rem, 3.28rem + 71vw, 43.75rem);
@@ -142,18 +145,20 @@ nav a:hover {
   bottom: auto;
   right: 0;
 }
-.welcome-card h1 {
-  font-size: clamp(2.25rem, 1.725rem + 2.25vw, 3.75rem);
-}
-.welcome-card .linebreak {
-  display: table;
-  margin: 0 auto;
-}
 .welcome-card p {
   font-size: clamp(1.125rem, 1.0875rem + 0.18vw, 1.25rem);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 1.5rem 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 1.725rem + 2.25vw, 3.75rem);
+}
+
+.linebreak {
+  display: table;
+  margin: 0 auto;
 }
 
 .btn {
@@ -234,11 +239,13 @@ p {
   justify-content: center;
   flex-direction: column;
 }
-.hello .pitch {
+
+.pitch {
   font-weight: 500;
   font-size: clamp(1.375rem, 1.025rem + 1.5vw, 2.375rem);
 }
-.hello video {
+
+video {
   display: block;
   width: 37.5rem;
   max-width: 100%;
@@ -293,15 +300,16 @@ p {
        column-gap: 4rem;
   margin-top: auto;
 }
-.op-hours .hours-list {
+.op-hours p {
+  font-weight: 500;
+}
+
+.hours-list {
   display: block;
   font-weight: 200;
   font-size: 0.875rem;
   text-align: left;
   letter-spacing: 1px;
-}
-.op-hours p {
-  font-weight: 500;
 }
 
 form .lastp {
@@ -424,7 +432,10 @@ footer {
   header input, header label, header .overlay {
     display: none;
   }
-  header nav {
+}
+
+@media (min-width: 1000px) {
+  nav {
     position: static;
     width: 89rem;
     max-width: 100%;
@@ -435,13 +446,13 @@ footer {
     justify-content: space-between;
     flex-direction: row;
   }
-  header nav .logo, header nav .nav-menu {
+  nav .logo, nav .nav-menu {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
   }
-  header nav .logo-img-wrapper, header nav .logo-name, header nav li {
+  nav .logo-img-wrapper, nav .logo-name, nav li {
     width: 12.5rem;
     height: 6.25rem;
     display: flex;
@@ -450,13 +461,16 @@ footer {
     border: none;
     padding: 0;
   }
-  header nav .logo-img-wrapper, header nav .logo-name {
+  nav .logo-img-wrapper, nav .logo-name {
     border-right: 0.5px solid hsl(32, 100%, 97%);
   }
-  header nav .logo-img {
+  nav .logo-name {
+    width: 13rem;
+  }
+  nav .logo-img {
     padding: 0;
   }
-  header nav li {
+  nav li {
     border-left: 0.5px solid hsl(32, 100%, 97%);
   }
 }
@@ -496,7 +510,10 @@ footer {
     border-bottom: none;
     padding: 0;
   }
-  article .hello, article .book-table, article .subscribe, article .copyright {
+}
+
+@media (min-width: 1000px) {
+  .hello, .book-table, .subscribe, .copyright {
     padding: 4rem 0.5rem;
     grid-column: 2/3;
     border-left: 0.5px solid hsl(32, 100%, 97%);
@@ -517,6 +534,7 @@ footer {
 }
 @media (min-width: 1000px) {
   .book-table, .subscribe {
+    padding: 3rem 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
