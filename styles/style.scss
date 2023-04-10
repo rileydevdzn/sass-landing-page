@@ -293,6 +293,7 @@ video {
   width: 37.5rem;
   max-width: 100%;
   margin: calc(2 * $space-base) auto 0 auto;
+  cursor: pointer;
 }
 
 .book-table, .subscribe {
@@ -515,13 +516,16 @@ article {
     padding: 0;
   }
 }
-.hello, .book-table, .subscribe, .copyright {
+.hello, .book-table, .subscribe, footer {
   @include bp(sprout) {
     padding: calc(4 * $space-base) calc(0.5 * $space-base);  
     grid-column: 2 / 3;
     border-left: 0.5px solid $body-txt-color;
     border-right: 0.5px solid $body-txt-color;
   }
+}
+footer {
+  padding: $space-base;
 }
 // Desktop version, side-by-side
 .book-table, .subscribe {

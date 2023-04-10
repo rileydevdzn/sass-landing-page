@@ -250,6 +250,7 @@ video {
   width: 37.5rem;
   max-width: 100%;
   margin: 2rem auto 0 auto;
+  cursor: pointer;
 }
 
 .book-table, .subscribe {
@@ -513,12 +514,16 @@ footer {
 }
 
 @media (min-width: 1000px) {
-  .hello, .book-table, .subscribe, .copyright {
+  .hello, .book-table, .subscribe, footer {
     padding: 4rem 0.5rem;
     grid-column: 2/3;
     border-left: 0.5px solid hsl(32, 100%, 97%);
     border-right: 0.5px solid hsl(32, 100%, 97%);
   }
+}
+
+footer {
+  padding: 1rem;
 }
 
 @media (min-width: 912px) {
