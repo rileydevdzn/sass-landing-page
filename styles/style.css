@@ -520,10 +520,6 @@ footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-  .book-table .rsv-details p, .book-table .subscr-form p, .subscribe .rsv-details p, .subscribe .subscr-form p {
-    text-align: left;
-    margin-left: 1.5rem;
-  }
 }
 
 @media (min-width: 912px) {

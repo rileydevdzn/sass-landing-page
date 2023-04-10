@@ -522,13 +522,9 @@ article {
     column-gap: calc(1.5 * $space-base);
     padding: 0 calc(1.5 * $space-base);
   }
-  @include bp(sprout) {
+  @include bp(sprout) { 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    .rsv-details p, .subscr-form p {
-      text-align: left;
-      margin-left: 1.5rem;
-    }
   }
 }
 .hero, .view-menu {
