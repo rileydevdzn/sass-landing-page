@@ -329,6 +329,8 @@ form button {
 }
 @media (min-width: 1000px) {
   form button {
+    background: transparent;
+    color: hsl(32, 100%, 97%);
     transition-property: all;
     transition-duration: 0.2s;
     transition-timing-function: ease;
@@ -517,6 +519,10 @@ footer {
   .book-table, .subscribe {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+  }
+  .book-table .rsv-details p, .book-table .subscr-form p, .subscribe .rsv-details p, .subscribe .subscr-form p {
+    text-align: left;
+    margin-left: 1.5rem;
   }
 }
 

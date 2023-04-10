@@ -367,6 +367,8 @@ form {
     color: $accent-red;
     cursor: pointer;
     @include bp(sprout) {
+      background: transparent;
+      color: $body-txt-color;
       @include transition(all);
       &:hover {
         @include navhover();
@@ -523,6 +525,10 @@ article {
   @include bp(sprout) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    .rsv-details p, .subscr-form p {
+      text-align: left;
+      margin-left: 1.5rem;
+    }
   }
 }
 .hero, .view-menu {
