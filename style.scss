@@ -1,0 +1,375 @@
+//Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+//Colors
+$primary-color-red: hsla(6, 97%, 12%, 1);
+$neutral-black: hsla(162, 63%, 3%, 1);
+$body-txt-color: hsla(32, 100%, 97%, 1);
+$card-bg-color:  hsla(32, 100%, 97%, 0.7);
+$accent-red: hsla(6, 96%, 18%, 1);
+
+//Fonts
+$sans-serif: "Montserrat", sans-serif;
+$font-wt-xtralight: 200;
+$font-wt-light: 300;
+$font-wt-norm: 400;
+$font-wt-med: 500;
+$font-wt-semibold: 600;
+$font-wt-bold: 700;
+$font-sz-base: 1rem;
+$body-txt-lnht: 1.5;
+
+//Fluid typography
+$body-font-sz: clamp(calc(#{$font-sz-base} - calc(#{$font-sz-base} * 0.125)), calc(0.83125 * #{$font-sz-base}) + 0.19vw, #{$font-sz-base});
+// FIX ME -- ALL FONT SIZES
+$h1-font-sz: 60px;
+$h2-font-sz: 28px;
+$pitch-font-sz: 38px;
+$small-txt: 14px;
+$dish-font-sz: 24px;
+//dish also used for logo
+$form-font-sz: 18px;
+
+//Dimensions & spacing (width, height, padding, margin, border-radius)
+$space-base: 1rem;
+
+
+//Centering elements
+@mixin place-ctr($display, $align, $justify) {
+  display: $display;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+@mixin box-shadow() {
+  box-shadow: 0px 1px 3px 1px hsla(0, 0%, 0%, 0.1);
+}
+
+//Nav hover, focus states
+@mixin navhover() {
+  background-color: $body-txt-color;
+  color: $accent-red;
+}
+
+//Animation transitions
+@mixin transition($properties) {
+  @each $property in $properties {
+    transition-property: $property;
+  }
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+//Light and dark buttons
+@mixin button-colors($light-button: true) {
+  @if $light-button {
+    border: 1px solid $body-txt-color;
+    @include transition(all);
+    &:hover {
+      background-color: $body-txt-color;
+      color: $accent-red;
+    } 
+  } @else {
+    border: 1px solid $accent-red;
+    color: $accent-red;
+    @include transition(all);
+    &:hover {
+      background-color: $accent-red;
+      color: $body-txt-color;
+    }
+  }
+}
+
+
+//Media queries, bp = breakpoint
+@mixin bp($point) {
+  @if $point == plant {
+    @media (max-width: 1600px) { @content; }
+  }
+  @if $point == sprout {
+    @media (max-width: 1250px) { @content; }
+  }
+  @if $point == seedling {
+    @media (max-width: 650px) { @content; }
+  }
+  @if $point == seed {
+    @media (max-width: 500px) { @content; }
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $primary-color-red;
+  font: $font-wt-norm #{$body-font-sz}/#{$body-txt-lnht} $sans-serif;
+  color: $body-txt-color;
+}
+
+ul {
+  list-style: none;
+}
+
+.nav-wrapper {
+  max-width: 90rem;
+  background-color: $primary-color-red;
+  @include place-ctr(flex, center, flex-start);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  .hamburger-input, .hamburger-label {
+    display: none;
+    }
+  nav {
+    width: 89rem;
+    border: 0.5px solid $body-txt-color;
+    @include place-ctr(flex, center, space-between);
+  }
+}
+
+.logo {
+  @include place-ctr(flex, center, center);
+  .logo-img-wrapper, .logo-name {
+    width: 200px;
+    height: 6.25rem;
+    border-right: 0.5px solid $body-txt-color;
+    @include place-ctr(flex, center, center);
+    .logo-img {
+      width: 60px;
+    }
+  }
+  .logo-name {
+    width: 225px;
+    font-size: $dish-font-sz;
+  }
+}
+
+.nav-menu {
+  @include place-ctr(flex, center, center);
+  font-weight: $font-wt-med;
+  letter-spacing: 0.5px;
+  li {
+    width: 200px;
+    height: 6.25rem;
+    border-left: 0.5px solid $body-txt-color;
+    a {
+      width: 100%;
+      height: 100%;
+      color: inherit;
+      text-decoration: none;
+      text-transform: uppercase;
+      @include place-ctr(flex, center, center);
+      @include transition(all);
+      &:hover {
+        @include navhover();
+      }
+    }
+  }
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: center / cover no-repeat url(./landingpg-hero-lg.jpg),  hsla(162, 63%, 3%, 0.15);
+  background-blend-mode: multiply;
+  position: relative;
+}
+
+.welcome-card {
+  width: 575px;
+  background-color: $card-bg-color;
+  color: $neutral-black;
+  padding: 2.5rem 2rem;
+  @include box-shadow();
+  text-align: center;
+  position: absolute;
+  top: 22.5%;
+  right: 5%;
+  @include bp(sprout) { 
+    top: 0;
+    left: 0;
+  }
+  h1 {
+    font-size: $h1-font-sz;
+    margin-bottom: 2rem;
+  }
+  .linebreak {
+    display: table;
+    margin: 0 auto;
+  }
+  p {
+    font-size: calc(1.25 * $font-sz-base);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 3rem;
+  }
+}
+
+.btn {
+  max-width: 200px;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  border-radius: 30px;
+  color: inherit;
+  text-decoration: none;
+  @include place-ctr(flex, center, center);
+  cursor: pointer;
+}
+.btn.dark {
+  @include button-colors($light-button: false);
+}
+.btn.light {
+  @include button-colors($light-button: true);
+}
+
+article, footer {
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto;
+  border: 0.5px solid $body-txt-color;
+  border-bottom: none;
+}
+
+.hello, .book-table, .subscribe, .copyright {
+  grid-column: 2 / 3;
+  border-left: 0.5px solid $body-txt-color;
+  border-right: 0.5px solid $body-txt-color;
+}
+
+.hello, .view-menu, .copyright {
+  text-align: center;
+  padding: 4rem;
+}
+
+.book-table, .subscribe {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.pitch {
+  font-size: $pitch-font-sz;
+  font-weight: $font-wt-med;
+  margin-top: 4rem;
+}
+
+video {
+  width: 600px;
+  border: 1px solid $body-txt-color;
+  margin: 8rem 0 6rem 0;
+  cursor: pointer;
+}
+
+.rsv-img {
+  width: 400px;
+  height: 500px;
+  margin: 4rem 0;
+  background-image: url("./rsv-img.jpg");
+  background-size: cover;
+  place-self: center;
+}
+
+.rsv-details, .subscr-form { 
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+}
+
+.op-hours {
+  display: flex;
+  column-gap: 4rem;
+  margin-top: auto;
+  font-weight: $font-wt-xtralight;
+  font-size: $small-txt;
+  p {
+    font-weight: $font-wt-med;
+  }
+}
+
+.view-menu {
+  grid-column: 1 / 4;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+  background: center / cover no-repeat url("./farmers\ market.jpg"), hsla(162, 63%, 3%, 0.55);
+  background-blend-mode: multiply;
+  place-self: center;
+}
+
+.menu-card {
+  width: 525px;
+  min-height: 350px;
+  max-height: 375px;
+  padding-top: 2rem;
+  margin: 0 auto;
+  background: center / cover no-repeat url("./bacalaoabras.jpeg"), hsla(0, 0%, 0%, 0.4);
+  @include box-shadow();
+  @include place-ctr(flex, center, center);
+  flex-direction: column;
+  row-gap: 6rem;
+  letter-spacing: 0.5px;
+  .menu-special {
+    min-width: 150px;
+    padding: 0.5rem 1rem;
+    background-color: $accent-red;
+    font-weight: $font-wt-med;
+    font-size: $small-txt;
+    color: $body-txt-color;
+    text-transform: uppercase;
+  }
+  .menu-dish {
+    width: 100%;
+    height: 35%;
+    padding-top: 0.5rem;
+    margin-top: auto;
+    font-weight: $font-wt-bold;
+    font-size: $dish-font-sz;
+    letter-spacing: 1px;
+    background-image: linear-gradient(180deg, transparent, hsla(0, 0%, 0%, 0.45) 31%);
+  }
+}
+
+.subscr-img {
+  width: 400px;
+  height: 500px;
+  background-image: url("./subscr-img.jpg");
+  background-size: cover;
+  place-self: center;
+}
+
+form {
+  .lastp {
+    margin: -2rem 0 -3rem 0;
+  }
+  label {
+    visibility: hidden;
+  }
+  input, button {
+    height: 3rem;
+    padding-left: 0.75rem;
+    border: 1px solid $body-txt-color;
+    background-color: transparent;
+    color: inherit;
+    font-size: $form-font-sz;
+    margin-bottom: -1.25rem;
+  }
+  button {
+    @include transition(all);
+    cursor: pointer;
+    &:hover {
+      @include navhover();
+    }
+  }
+}
+
+.copyright {
+  padding: 2rem; 
+}

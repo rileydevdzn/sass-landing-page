@@ -1,0 +1,167 @@
+//Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+//Colors
+$primary-color-red: hsla(6, 97%, 12%, 1);
+$neutral-black: hsla(162, 63%, 3%, 1);
+$body-txt-color: hsla(32, 100%, 97%, 1);
+$card-bg-color:  hsla(32, 100%, 97%, 0.7);
+$accent-red: hsla(6, 96%, 18%, 1);
+
+//Fonts
+$sans-serif: "Montserrat", sans-serif;
+$font-wt-norm: 400;
+$font-wt-med: 500;
+$font-wt-semibold: 600;
+$font-wt-bold: 700;
+$font-sz-base: 1rem;
+$body-txt-lnht: 1.5;
+
+//Fluid typography
+$body-font-sz: clamp(calc(#{$font-sz-base} - calc(#{$font-sz-base} * 0.125)), calc(0.83125 * #{$font-sz-base}) + 0.19vw, #{$font-sz-base});
+// FIX ME -- ALL FONT SIZES
+$h1-font-sz: clamp(calc($font-sz-base * 1.25), calc(1.1625 * $font-sz-base) + 0.375vw, calc($font-sz-base * 1.5));
+$h2-font-sz: calc($font-sz-base * 1.125);
+
+//Dimensions & spacing (width, height, padding, margin, border-radius)
+$space-base: 1rem;
+
+
+//Centering elements
+@mixin place-ctr($display, $align, $justify) {
+  display: $display;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+//Nav hover, focus states
+@mixin navhover($background-color, $color) {
+  background-color: $background-color;
+  color: $color;
+}
+
+//Animation transitions
+@mixin transition($properties) {
+  @each $property in $properties {
+    transition-property: $property;
+  }
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+//Light and dark buttons
+@mixin button-colors($light-button: true) {
+  @if $light-button {
+    border: 1px solid $body-txt-color;
+    @include transition(all);
+    &:hover {
+      background-color: $body-txt-color;
+      color: $accent-red;
+    } 
+  } @else {
+    border: 1px solid $accent-red;
+    color: $accent-red;
+    @include transition(all);
+    &:hover {
+      background-color: $accent-red;
+      color: $body-txt-color;
+    }
+  }
+}
+
+
+//Media queries, bp = breakpoint
+@mixin bp($point) {
+  @if $point == plant {
+    @media (max-width: 1600px) { @content; }
+  }
+  @if $point == sprout {
+    @media (max-width: 1250px) { @content; }
+  }
+  @if $point == seedling {
+    @media (max-width: 650px) { @content; }
+  }
+  @if $point == seed {
+    @media (max-width: 500px) { @content; }
+  }
+}
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $primary-color-red;
+  font: $font-wt-norm #{$body-font-sz}/#{$body-txt-lnht} $sans-serif;
+  color: $body-txt-color;
+}
+
+.nav-wrapper {
+  max-width: 90rem;
+  @include place-ctr(flex, center, flex-start);
+  /*@include bp(sprout) {
+    flex-direction: column;
+    .hamburger-label {
+      display: block;
+    }*/
+  .hamburger-input, .hamburger-label {
+    display: none;
+    }
+  nav {
+    width: 89rem;
+    border: 0.5px solid $body-txt-color;
+    @include place-ctr(flex, center, space-between);
+  }
+}
+
+.logo {
+  @include place-ctr(flex, center, center);
+  .logo-img-wrapper, .logo-name {
+    width: 200px;
+    height: 6.25rem;
+    border-right: 0.5px solid $body-txt-color;
+    @include place-ctr(flex, center, center);
+    .logo-img {
+      width: 60px;
+    }
+  }
+  .logo-name {
+    font-size: calc(1.375 * $font-sz-base);
+  }
+}
+
+.nav-menu {
+  @include place-ctr(flex, center, center);
+  font-weight: $font-wt-med;
+  letter-spacing: 0.5px;
+  li {
+    list-style: none;
+    width: 200px;
+    height: 6.25rem;
+    border-left: 0.5px solid $body-txt-color;
+    a {
+      width: 100%;
+      height: 100%;
+      color: inherit;
+      text-decoration: none;
+      text-transform: uppercase;
+      @include place-ctr(flex, center, center);
+      @include transition(all);
+      &:hover {
+        @include navhover($body-txt-color, $accent-red);
+      }
+    }
+  }
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: center cover no-repeat url(./landingpg-hero-lg.jpg);
+}
+
+
+

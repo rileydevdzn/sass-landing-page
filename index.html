@@ -3,28 +3,37 @@
   <head>
     <meta charset="UTF-8">
     <title>Landing Page</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./styles/style.css">
   </head>
 
   <body>
-    <nav id="nav-bar">
-      <div class="logo">
-        <div class="img-wrapper">
-          <img id="header-img" src="./barcelos-outline-fff8f0.png" alt="Portuguese rooster, logo for A Placa Porto">
+    <div class="nav-wrapper">
+      <input type="checkbox" class="hamburger-input" id="hamburger-input"/>
+      <label class="hamburger-label" for="hamburger-input">
+        <svg viewBox="0 0 100 80" width="30" height="40">
+          <rect width="85" height="12" rx="8" fill="currentColor"></rect>
+          <rect y="30" width="85" height="12" rx="8" fill="currentColor"></rect>
+          <rect y="60" width="85" height="12" rx="8" fill="currentColor"></rect>
+        </svg>
+      </label>
+      <nav class="navbar">
+        <div class="logo">
+          <div class="logo-img-wrapper">
+            <img class="logo-img" src="./barcelos-outline-fff8f0.png" alt="Portuguese rooster, logo for A Placa Porto">
+          </div>
+          <p class="logo-name">A Placa Porto</p>
         </div>
-        <p id="header-name">A Placa Porto</p>
-      </div>
-      <div class="nav-menu">
-        <a class="nav-link" href="#reservation">Reservation</a>
-        <a class="nav-link" href="#menu">Order online</a>
-        <a class="nav-link" href="#newsletter">Events</a>
-      </div>
-    </nav>
-
+        <ul class="nav-menu">
+          <li><a class="nav-link" href="#reservation">Reservation</a></li>
+          <li><a class="nav-link" href="#menu">Order online</a></li>
+          <li><a class="nav-link" href="#newsletter">Events</a></li>
+        </ul>
+      </nav>
+    </div>
     <main>
       <section class="hero">
         <div class="welcome-card">
-          <h1>Welcome to <br>A Placa Porto</h1>
+          <h1>Welcome to <span class="linebreak">A Placa Porto</span></h1>
           <p>Contemporary Portuguese Cuisine</p>
           <a class="btn dark" href="#">Order Online</a>
         </div>
