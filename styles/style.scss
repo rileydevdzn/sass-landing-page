@@ -5,7 +5,7 @@
 $primary-color-red: hsla(6, 97%, 12%, 1);
 $neutral-black: hsla(162, 63%, 3%, 1);
 $body-txt-color: hsla(32, 100%, 97%, 1);
-$card-bg-color:  hsla(32, 100%, 97%, 0.7);
+$card-bg-color:  hsla(32, 100%, 97%, 0.75);
 $accent-red: hsla(6, 96%, 18%, 1);
 
 //Fonts
@@ -20,10 +20,10 @@ $font-sz-base: 1rem;
 $body-txt-lnht: 1.5;
 
 //Fluid typography
-$h1-font-sz: calc(2 * $font-sz-base); //clamp(calc(2.25 * $font-sz-base), calc(1.725 * $font-sz-base) + 2.25vw, calc(3.75 * $font-sz-base));
+$h1-font-sz: clamp(calc(2.25 * $font-sz-base), calc(1.725 * $font-sz-base) + 2.25vw, calc(3.75 * $font-sz-base));
 $h2-font-sz: clamp(calc(1.625 * $font-sz-base), calc(1.6 * $font-sz-base) + 0.18vw, calc(1.75 * $font-sz-base));
 $pitch-font-sz: clamp(calc(1.375 * $font-sz-base), calc(1.025 * $font-sz-base) + 1.5vw, calc(2.375 * $font-sz-base));
-$card-p-sz: $font-sz-base;//clamp(calc(1.125 * $font-sz-base), calc(1.0875 * $font-sz-base) + 0.18vw, calc(1.25 * $font-sz-base));
+$card-p-sz: clamp(calc(1.125 * $font-sz-base), calc(1.0875 * $font-sz-base) + 0.18vw, calc(1.25 * $font-sz-base));
 $highlight-font-sz: calc(1.5 * $font-sz-base); //logo and daily dish
 $form-font-sz: calc(1.125 * $font-sz-base);
 $small-txt: calc(0.875 * $font-sz-base);
@@ -99,16 +99,16 @@ $space-base: 1rem;
 //Media queries, bp = breakpoint
 @mixin bp($point) {
   @if $point == plant {
-    @media (min-width: 1600px) { @content; }
+    @media screen and (min-width: 1600px) { @content; }
   }
   @if $point == sprout {
-    @media (min-width: 1000px) { @content; }
+    @media screen and (min-width: 1000px) { @content; }
   }
   @if $point == seedling {
-    @media (min-width: 912px) { @content; }
+    @media screen and (min-width: 912px) { @content; }
   }
   @if $point == seed {
-    @media (min-width: 600px) { @content; }
+    @media screen and (min-width: 600px) { @content; }
   }
 }
 
@@ -123,6 +123,7 @@ body {
   background-color: $primary-color-red;
   font: $font-wt-norm #{$font-sz-base}/#{$body-txt-lnht} $sans-serif;
   color: $body-txt-color;
+  text-align: center;
 }
 
 ul {
@@ -131,9 +132,29 @@ ul {
   flex-direction: column;
 }
 
-header {
+.btn {
+  max-width: 12.5rem;
+  padding: $space-base calc(2 * $space-base);
+  margin: calc(1.5 * $space-base) auto;
+  border-radius: calc(1.875 * $space-base);
+  color: inherit;
+  text-decoration: none;
+  @include place-ctr(flex, center, center);
+  cursor: pointer;
+}
+.btn.dark {
+  @include button-colors($light-button: false);
+}
+.btn.light {
+  @include button-colors($light-button: true);
+}
+
+
+
+
+
+/*header {
   width: 100%;
-  //height: 100vh;
   @include position(relative, $top: 0, $left: 0);
   overflow-x: hidden;
 }
@@ -213,43 +234,56 @@ nav {
 }
 .logo {
   font-size: $highlight-font-sz;
-}
+}*/
 
-.hero-wrapper {
+.hero {
   width: 100%;
-  //height: 100%;
-  //height: clamp(20rem, 3.28rem + 71vw, 43.75rem);
-  //background: 0 / 140% no-repeat url(./landingpg-hero-lg.jpg),  hsla(162, 63%, 3%, 0.15);
-  //background-blend-mode: multiply;
-  background-color: hsla(162, 63%, 3%, 0.15);
-  position: relative;
-  z-index: 1;
-  margin-bottom: 25vh;
+  height: 56vw;
+  max-height: 700px;
+  background: center / cover no-repeat url(./landingpg-hero-lg.jpg),  hsla(162, 63%, 3%, 0.15);
+  background-blend-mode: multiply;
 }
-
-.hero-img {
-  width: 100%;
-  //height: clamp(20rem, 3.28rem + 71vw, 43.75rem);
-  object-fit: cover;
-
-}
-
 .welcome-card {
-  width: 30rem;
+  display: inline-block;
   max-width: calc(100% - 2rem);
-  padding: calc(1.25 * $space-base);
-  margin: 0 auto;
+  padding: calc(1.5 * $space-base) calc(2.5 * $space-base);
   background-color: $card-bg-color;
+  color: $neutral-black;
+  @include position(relative, $top: 65%);
+  p {
+    //font-weight: $font-wt-med;
+    font-size: $card-p-sz;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+h1 {
+  font-size: $h1-font-sz;
+  margin-bottom: calc(1.5 * $space-base);
+  .linebreak {
+    display: table;
+    margin: 0 auto;
+  }
+}
+
+
+
+/*.welcome-card {
+  width: 80vw;
+  max-width: 30rem;
+  padding: calc(1.5 * $space-base);
+  background-color: $card-bg-color;
+  @include place-ctr(flex, center, center);
+  flex-direction: column;
   @include box-shadow();
   color: $neutral-black;
   text-align: center;
-  @include position(absolute, $top: 65%, $left: 0, $right: 0);
-  z-index: 2;
+  @include position(relative, $top: -6rem);
   p {
     font-size: $card-p-sz;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: calc(1.25 * $space-base) 0;
+    margin: calc(1.25 * $space-base) auto;
   }
 }
 
@@ -261,23 +295,12 @@ h1 {
   margin: 0 auto;
 }
 
-.btn {
-  max-width: 12.5rem;
-  padding: $space-base calc(2 * $space-base);
-  margin: 0 auto;
-  border-radius: calc(1.875 * $space-base);
-  color: inherit;
-  text-decoration: none;
-  @include place-ctr(flex, center, center);
-  cursor: pointer;
-}
-.btn.dark {
-  @include button-colors($light-button: false);
-}
-.btn.light {
-  @include button-colors($light-button: true);
-}
 
+
+
+
+
+/*
 article {
   width: 100%;
   padding: calc(4 * $space-base) $space-base;
@@ -458,7 +481,7 @@ footer {
 
 
 // Desktop version
-.nav-wrapper {
+/*.nav-wrapper {
   @include bp(sprout) {
     @include position(sticky, $top: 0, $left: 0);
     width: 89rem;
@@ -509,24 +532,16 @@ nav {
   }
 }
 
-/*.hero {
-  @include bp(seed) {
-    margin-bottom: 25vh;
-  }
-  @include bp(seedling) {
-    height: 100vh;
-    background: center / cover no-repeat url(./landingpg-hero-lg.jpg),  hsla(162, 63%, 3%, 0.15);
-    margin-bottom: 0;
-  }
-}
-.welcome-card {
+
+/*.welcome-card {
   @include bp(seedling) {
     width: clamp(30rem, 19.8rem + 18vw, 36rem);
     padding: calc(2.5 * $space-base) calc(2 * $space-base);
     @include position(absolute, $top: 40%, $right: 5%);
   }
 }*/
-article {
+
+/*article {
   @include bp(sprout) {
     width: 89rem;
     max-width: 100%;
@@ -569,4 +584,4 @@ footer {
     border-left: 0.5px solid $body-txt-color;
     border-right: 0.5px solid $body-txt-color;
   }
-}
+}*/
