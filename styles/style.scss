@@ -20,10 +20,10 @@ $font-sz-base: 1rem;
 $body-txt-lnht: 1.5;
 
 //Fluid typography
-$h1-font-sz: clamp(calc(2.25 * $font-sz-base), calc(1.725 * $font-sz-base) + 2.25vw, calc(3.75 * $font-sz-base));
+$h1-font-sz: calc(2 * $font-sz-base); //clamp(calc(2.25 * $font-sz-base), calc(1.725 * $font-sz-base) + 2.25vw, calc(3.75 * $font-sz-base));
 $h2-font-sz: clamp(calc(1.625 * $font-sz-base), calc(1.6 * $font-sz-base) + 0.18vw, calc(1.75 * $font-sz-base));
 $pitch-font-sz: clamp(calc(1.375 * $font-sz-base), calc(1.025 * $font-sz-base) + 1.5vw, calc(2.375 * $font-sz-base));
-$card-p-sz: clamp(calc(1.125 * $font-sz-base), calc(1.0875 * $font-sz-base) + 0.18vw, calc(1.25 * $font-sz-base));
+$card-p-sz: $font-sz-base;//clamp(calc(1.125 * $font-sz-base), calc(1.0875 * $font-sz-base) + 0.18vw, calc(1.25 * $font-sz-base));
 $highlight-font-sz: calc(1.5 * $font-sz-base); //logo and daily dish
 $form-font-sz: calc(1.125 * $font-sz-base);
 $small-txt: calc(0.875 * $font-sz-base);
@@ -131,12 +131,15 @@ ul {
   flex-direction: column;
 }
 
-.wrapper {
-  position:relative;
-  overflow-x:hidden;
+header {
+  width: 100%;
+  //height: 100vh;
+  @include position(relative, $top: 0, $left: 0);
+  overflow-x: hidden;
+  z-index: 3;
 }
 
-header {
+.nav-wrapper {
   width: 80vw;
   max-width: calc($space-base * 17.8125);
   margin-left: auto;
@@ -168,7 +171,7 @@ header {
   height: 100vh;
   background-color:rgba(0, 0, 0, 0.4);
   @include position(absolute, $top: 0, $left: 0);
-  z-index: 3;
+  z-index: 4;
   visibility: hidden;
   @include transition(visibility, $dur: 0.15s);
 }
@@ -176,12 +179,12 @@ header {
 nav {
   width: 80vw;
   max-width: calc($space-base * 17.8125);
-  height: 110%;
+  height: 100vh;
   background-color: $primary-color-red;
   @include place-ctr(flex, center, center);
   flex-direction: column-reverse;
   row-gap: calc(1.5 * $space-base);
-  @include position(absolute, $top: -4rem, $right: calc($space-base * -17.8125));
+  @include position(absolute, $top: 0, $right: calc($space-base * -17.8125));
   padding-bottom: calc(1.5 * $space-base);
   z-index: 6;
   @include transition(transform);
@@ -213,30 +216,50 @@ nav {
   font-size: $highlight-font-sz;
 }
 
+main {
+  //@include position(relative, $top: calc(-100vh + 3.65rem), $left: 0);
+}
+
 .hero {
+ // @include position(relative, $top: 0, $left: 0);
+  
+}
+
+.hero-wrapper {
   width: 100%;
-  height: clamp(20rem, 3.28rem + 71vw, 43.75rem);
-  background: 0 / 140% no-repeat url(./landingpg-hero-lg.jpg),  hsla(162, 63%, 3%, 0.15);
-  background-blend-mode: multiply;
-  position: relative;
-  margin-bottom: 35vh;
+  //height: 100%;
+  //height: clamp(20rem, 3.28rem + 71vw, 43.75rem);
+  //background: 0 / 140% no-repeat url(./landingpg-hero-lg.jpg),  hsla(162, 63%, 3%, 0.15);
+  //background-blend-mode: multiply;
+  background-color: hsla(162, 63%, 3%, 0.15);
+  @include position(relative, $top: 0, $left: 0);
+  z-index: 1;
+  margin-bottom: 25vh;
+}
+
+.hero-img {
+  width: 100%;
+  //height: clamp(20rem, 3.28rem + 71vw, 43.75rem);
+  object-fit: cover;
+
 }
 
 .welcome-card {
   width: 30rem;
   max-width: calc(100% - 2rem);
-  padding: calc(1.5 * $space-base);
+  padding: calc(1.25 * $space-base);
   margin: 0 auto;
   background-color: $card-bg-color;
   @include box-shadow();
   color: $neutral-black;
   text-align: center;
-  @include position(absolute, $top: 58%, $left: 0, $right: 0);
+  @include position(absolute, $top: 65%, $left: 0, $right: 0);
+  z-index: 2;
   p {
     font-size: $card-p-sz;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: calc(1.5 * $space-base) 0;
+    margin: calc(1.25 * $space-base) 0;
   }
 }
 
@@ -268,12 +291,15 @@ h1 {
 article {
   width: 100%;
   padding: calc(4 * $space-base) $space-base;
-  border: 0.5px solid $body-txt-color;
+  //border: 0.5px solid $body-txt-color;
+  border-bottom: 0.5px solid $body-txt-color;
   text-align: center;
   overflow: hidden;
   @include place-ctr(flex, center, center);
   flex-direction: column;
 }
+
+
 
 h2 {
   font-weight: $font-wt-semibold;
@@ -287,6 +313,7 @@ p {
 .hello {
   @include place-ctr(flex, center, center);
   flex-direction: column;
+  
 }
 .pitch {
   font-weight: $font-wt-med;
@@ -388,7 +415,7 @@ form {
   background: center / cover no-repeat url("./farmers-market.jpg"), hsla(162, 63%, 3%, 0.55);
   background-blend-mode: multiply;
   text-align: center;
-  border-top: 0.5px solid $body-txt-color;
+  border-bottom: 0.5px solid $body-txt-color;
   @include place-ctr(flex, center, center);
   flex-direction: column;
   row-gap: calc(3 * $space-base);
@@ -428,7 +455,7 @@ form {
 }
 
 footer {
-  border: 0.5px solid $body-txt-color;
+  //border: 0.5px solid $body-txt-color;
   width: 100%;
   max-width: 89rem;
 }
@@ -441,7 +468,7 @@ footer {
 
 
 // Desktop version
-header {
+.nav-wrapper {
   @include bp(sprout) {
     @include position(sticky, $top: 0, $left: 0);
     width: 89rem;
