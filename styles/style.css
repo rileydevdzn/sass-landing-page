@@ -27,7 +27,6 @@ header {
   bottom: auto;
   right: auto;
   overflow-x: hidden;
-  z-index: 3;
 }
 
 .nav-wrapper {
@@ -135,10 +134,6 @@ nav a:hover {
   width: 100%;
   background-color: hsla(162, 63%, 3%, 0.15);
   position: relative;
-  top: 0;
-  left: 0;
-  bottom: auto;
-  right: auto;
   z-index: 1;
   margin-bottom: 25vh;
 }
@@ -495,31 +490,23 @@ footer {
   }
 }
 
-@media (min-width: 600px) {
-  .hero {
+/*.hero {
+  @include bp(seed) {
     margin-bottom: 25vh;
   }
-}
-@media (min-width: 912px) {
-  .hero {
+  @include bp(seedling) {
     height: 100vh;
-    background: center/cover no-repeat url(./landingpg-hero-lg.jpg), hsla(162, 63%, 3%, 0.15);
+    background: center / cover no-repeat url(./landingpg-hero-lg.jpg),  hsla(162, 63%, 3%, 0.15);
     margin-bottom: 0;
   }
 }
-
-@media (min-width: 912px) {
-  .welcome-card {
+.welcome-card {
+  @include bp(seedling) {
     width: clamp(30rem, 19.8rem + 18vw, 36rem);
-    padding: 2.5rem 2rem;
-    position: absolute;
-    top: 40%;
-    left: auto;
-    bottom: auto;
-    right: 5%;
+    padding: calc(2.5 * $space-base) calc(2 * $space-base);
+    @include position(absolute, $top: 40%, $right: 5%);
   }
-}
-
+}*/
 @media (min-width: 1000px) {
   article {
     width: 89rem;
