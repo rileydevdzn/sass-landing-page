@@ -119,11 +119,15 @@ $space-base: 1rem;
   padding: 0;
 }
 
+html, body {
+  position:relative;
+  overflow-x:hidden;
+}
+
 body {
   background-color: $primary-color-red;
   font: $font-wt-norm #{$font-sz-base}/#{$body-txt-lnht} $sans-serif;
   color: $body-txt-color;
-  overflow-x: hidden;
 }
 
 ul {
