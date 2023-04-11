@@ -142,6 +142,9 @@ header {
   font-weight: $font-wt-med;
   letter-spacing: 0.5px;
   text-align: center;
+  border: 1px dashed orange;
+  //@include position(relative, $top: 0, $left: 0);
+  overflow-x: hidden;
   label {
     margin: calc(0.75 * $space-base) $space-base 0 0;
     cursor: pointer;
