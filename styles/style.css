@@ -5,11 +5,6 @@
   padding: 0;
 }
 
-html, body {
-  position: relative;
-  overflow-x: hidden;
-}
-
 body {
   background-color: hsl(6, 97%, 12%);
   font: 400 1rem/1.5 "Montserrat", sans-serif;
@@ -22,6 +17,11 @@ ul {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.wrapper {
+  position: relative;
+  overflow-x: hidden;
 }
 
 header {
