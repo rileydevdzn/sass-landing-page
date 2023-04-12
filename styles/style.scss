@@ -32,8 +32,9 @@ $small-txt: calc(0.875 * $font-sz-base);
 $space-base: 1rem;
 
 //Positioning elements
-@mixin place-ctr($display, $align, $justify) {
+@mixin placement($display: flex, $flexdir: row, $align: center, $justify: center) {
   display: $display;
+  flex-direction: $flexdir;
   align-items: $align;
   justify-content: $justify;
 }
@@ -99,13 +100,13 @@ $space-base: 1rem;
 //Media queries, bp = breakpoint
 @mixin bp($point) {
   @if $point == plant {
-    @media (min-width: 1600px) { @content; }
+    @media (min-width: 1440px) { @content; }
   }
   @else if $point == sprout {
     @media (min-width: 1000px) { @content; }
   }
   @else if $point == seedling {
-    @media (min-width: 912px) { @content; }
+    @media (min-width: 800px) { @content; }
   }
   @else if $point == seed {
     @media (min-width: 600px) { @content; }
@@ -128,8 +129,11 @@ body {
 
 ul {
   list-style: none;
-  @include place-ctr(flex, center, center);
-  flex-direction: column;
+  @include placement(flex, column);
+}
+
+h1, h2, p {
+  max-width: 50ch;
 }
 
 .btn {
@@ -139,7 +143,7 @@ ul {
   border-radius: calc(1.875 * $space-base);
   color: inherit;
   text-decoration: none;
-  @include place-ctr(flex, center, center);
+  @include placement(flex);
   cursor: pointer;
 }
 .btn.dark {
@@ -149,16 +153,23 @@ ul {
   @include button-colors($light-button: true);
 }
 
-
+header {
+  @include bp(sprout) {
+    @include position(sticky, $top: 0);
+    z-index: 20;
+  }
+}
 .nav-wrapper {
   width: 100%;
   @include position(relative);
-  @include place-ctr(flex, flex-end, center);
-  flex-direction: column;
+  @include placement(flex, column, flex-end);
   label {
     margin: $space-base $space-base 0 auto;
     cursor: pointer;
     z-index: 20;
+    @include bp(sprout) {
+      display: none;
+    }
   }
   input {
     display: none;
@@ -171,21 +182,26 @@ ul {
 }
 nav {
   width: 100%;
-  height: 625px;
+  height: 39rem;
   background-color: $primary-color-red;
-  padding-bottom: 5rem;
+  padding-bottom: calc(5 * $space-base);
   margin-left: auto;
-  display: flex;
-  flex-direction: column-reverse;
-  @include position(absolute, $top: -625px, $left: 0);
+  @include placement(flex, column-reverse);
+  @include position(absolute, $top: -39rem, $left: 0);
   z-index: 4;
   @include transition(transform);
   li {
     width: 150%;
     max-width: calc($space-base * 17.8125);
     height: 6.25rem;
-    @include place-ctr(flex, center, center);
+    @include placement(flex);
     border-bottom: 0.5px solid $body-txt-color;
+    @include bp(sprout) {
+      width: 12.5rem;
+      @include placement(flex);
+      border-bottom: none;
+      border-left: 0.5px solid $body-txt-color;
+    }
   }
   a {
     width: 100%;
@@ -193,106 +209,57 @@ nav {
     color: inherit;
     text-decoration: none;
     text-transform: uppercase;
-    @include place-ctr(flex, center, center);
+    @include placement(flex);
+    @include transition(all);
+    &:hover {
+      background-color: $body-txt-color;
+      color: $accent-red;
+    }
   }
-  
+  @include bp(sprout) {
+    width: 100%;
+    height: 6.25rem;
+    padding-bottom: 0;
+    @include position(static, $top: 0, $left: 0);
+    @include placement(flex, row, center, space-between);
+    border: 0.5px solid $body-txt-color;
+  }
+}
+.logo {
+  font-size: $highlight-font-sz;
+  @include bp(sprout) {
+    @include placement(flex);
+  }
+}
+.logo-img-wrapper, .logo-name {
+  @include bp(sprout) {
+    width: 12.5rem;
+    height: 6.25rem;
+    border-right: 0.5px solid $body-txt-color;
+    @include placement(flex);
+  }
 }
 .logo-img {
   width: 4.75rem;
   padding: 0 5px 5px 0;
   margin-top: 1.5rem;
+  @include bp(sprout) {
+    width: 3.75rem;
+    padding: 0;
+    margin: 0;
+  }
 }
-.logo {
-  font-size: $highlight-font-sz;
+.nav-menu {
+  @include bp(sprout) {
+    @include placement(flex);
+  }
 }
 
-/*header {
-  width: 100%;
-  @include position(relative, $top: 0, $left: 0);
-  overflow-x: hidden;
-}
-
-.nav-wrapper {
-  width: 80vw;
-  max-width: calc($space-base * 17.8125);
-  margin-left: auto;
-  background-color: $primary-color-red;
-  @include place-ctr(flex, flex-end, center);
-  flex-direction: column;
-  font-weight: $font-wt-med;
-  letter-spacing: 0.5px;
-  text-align: center;
-  label {
-    margin: calc(0.75 * $space-base) $space-base 0 0;
-    cursor: pointer;
-    z-index: 10;
-  }
-  input {
-    display: none;
-    &:checked {
-      ~ nav {
-        transform: translate(calc($space-base * -17.8125), 0);
-      }
-      ~ .overlay {
-        visibility: visible;
-      }
-    }
-  }
-}
-.overlay {
-  width: 100%;
-  height: 100vh;
-  background-color:rgba(0, 0, 0, 0.4);
-  @include position(absolute, $top: 0, $left: 0);
-  z-index: 4;
-  visibility: hidden;
-  @include transition(visibility, $dur: 0.15s);
-}
-
-nav {
-  width: 80vw;
-  max-width: calc($space-base * 17.8125);
-  height: 100vh;
-  background-color: $primary-color-red;
-  @include place-ctr(flex, center, center);
-  flex-direction: column-reverse;
-  row-gap: calc(1.5 * $space-base);
-  @include position(absolute, $top: 0, $right: calc($space-base * -17.8125));
-  padding-bottom: calc(1.5 * $space-base);
-  z-index: 6;
-  @include transition(transform);
-  li {
-    width: 150%;
-    max-width: calc($space-base * 17.8125);
-    height: 6.25rem;
-    @include place-ctr(flex, center, center);
-    border-bottom: 0.5px solid $body-txt-color;
-  }
-  a {
-    width: 100%;
-    height: 100%;
-    color: inherit;
-    text-decoration: none;
-    text-transform: uppercase;
-    @include place-ctr(flex, center, center);
-    @include transition(all);
-    &:hover {
-      @include navhover();
-    }
-  }
-}
-.logo-img {
-  width: 3.75rem;
-  padding: 0 5px 5px 0;
-}
-.logo {
-  font-size: $highlight-font-sz;
-}*/
 
 .hero {
   width: 100%;
   height: 56vw;
-  max-height: 700px;
+  max-height: 43.75rem;
   background: center / cover no-repeat url(./landingpg-hero-lg.jpg),  hsla(162, 63%, 3%, 0.15);
   background-blend-mode: multiply;
 }
@@ -304,65 +271,22 @@ nav {
   color: $neutral-black;
   @include position(relative, $top: 65%);
   p {
-    //font-weight: $font-wt-med;
     font-size: $card-p-sz;
     text-transform: uppercase;
     letter-spacing: 1px;
+  }
+  @include bp(sprout) {
+    @include position(relative, $top: 15rem, $left: clamp(12rem, 42.7vw - 14.7rem, 28rem));
   }
 }
 h1 {
   font-size: $h1-font-sz;
   margin-bottom: calc(1.5 * $space-base);
-  .linebreak {
-    display: table;
-    margin: 0 auto;
-  }
-}
-
-
-
-
-
-
-
-/*.welcome-card {
-  width: 80vw;
-  max-width: 30rem;
-  padding: calc(1.5 * $space-base);
-  background-color: $card-bg-color;
-  @include place-ctr(flex, center, center);
-  flex-direction: column;
-  @include box-shadow();
-  color: $neutral-black;
-  text-align: center;
-  @include position(relative, $top: -6rem);
-  p {
-    font-size: $card-p-sz;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: calc(1.25 * $space-base) auto;
-  }
-}
-
-h1 {
-  font-size: $h1-font-sz;
 }
 .linebreak {
   display: table;
   margin: 0 auto;
 }
-
-article {
-  width: 100%;
-  padding: calc(4 * $space-base) $space-base;
-  border: 0.5px solid $body-txt-color;
-  border-bottom: 0.5px solid $body-txt-color;
-  text-align: center;
-  overflow: hidden;
-  @include place-ctr(flex, center, center);
-  flex-direction: column;
-}
-
 
 
 h2 {
@@ -370,13 +294,27 @@ h2 {
   font-size: $h2-font-sz;
 }
 
-p {
-  max-width: 55ch;
+.intro {
+  @include bp(plant) {
+    display: grid;
+    grid-template-columns: 12.5rem 1fr 12.5rem;
+    grid-template-rows: auto;
+  }
 }
-
 .hello {
-  @include place-ctr(flex, center, center);
-  flex-direction: column;
+  padding: calc(19 * $space-base) $space-base 0 $space-base;
+  @include placement(flex, column);
+  @include bp(seedling) {
+    padding-top: calc(15 * $space-base);
+  }
+  @include bp(sprout) {
+    padding-top: calc(6 * $space-base);
+  }
+  @include bp(plant) {
+    grid-column: 2 / 3;
+    border-left: 0.5px solid $body-txt-color;
+    border-right: 0.5px solid $body-txt-color;
+  }
 }
 .pitch {
   font-weight: $font-wt-med;
@@ -386,72 +324,69 @@ video {
   display: block;
   width: 37.5rem;
   max-width: 100%;
-  margin: calc(2 * $space-base) auto 0 auto;
+  margin: calc(3.5 * $space-base) auto;
   cursor: pointer;
 }
 
-.book-table, .subscribe {
-  width: 100%;
-  @include place-ctr(flex, center, center);
-  flex-direction: column;
-}
-.book-table {
-  flex-direction: column-reverse;
-}
-
-.rsv-img, .subscr-img {
-  width: 100%;
-  max-width: 25rem;
-  height: 100vw;
-  max-height: 31.25rem;
-  margin-top: $space-base;
-  place-self: center;
-}
-.rsv-img {
-  background-image: url("./rsv-img.jpg");
-  background-size: cover;
-}
-.subscr-img {
-  background-image: url("./subscr-img.jpg");
-  background-size: cover;
-}
-.rsv-details, .subscr-form {
-  display: flex;
-  flex-direction: column;
-  row-gap: calc(3 * $space-base);
-  text-align: center;
-  padding: calc(1.5 * $space-base);
-  padding-top: 0;
-}
-.op-hours {
-  @include place-ctr(flex, flex-start, center);
-  column-gap: calc(4 * $space-base);
-  margin-top: auto;
-  p {
-    font-weight: $font-wt-med;
+.reservation, .newsletter {
+  border-top: 0.5px solid $body-txt-color;
+  @include bp(plant) {
+    display: grid;
+    grid-template-columns: 12.5rem 1fr 12.5rem;
+    grid-template-rows: auto;
   }
 }
+.book-table, .subscribe {
+  padding: calc(4 * $space-base) $space-base;
+  @include placement(flex, column);
+  row-gap: calc(3 * $space-base);
+  @include bp(sprout) {
+    @include placement(flex, row, center, space-around);
+  }
+  @include bp(plant) {
+    grid-column: 2 / 3;
+    border-left: 0.5px solid $body-txt-color;
+    border-right: 0.5px solid $body-txt-color;
+  }
+}
+.book-table {
+  @include bp(sprout) {
+    @include placement(flex, row-reverse, center, space-around);
+  }
+}
+.rsv-details, .subscr-form {
+  @include placement(flex, column);
+  row-gap: calc(2 * $space-base);
+}
+.rsv-img, .subscr-img {
+  object-fit: cover;
+  width: 100%;
+  max-width: 25rem;
+  max-height: 31.25rem;
+}
+.op-hours {
+  font-weight: $font-wt-med;
+  margin-bottom: calc(0.5 * $space-base);
+}
 .hours-list {
-  display: block;
   font-weight: $font-wt-xtralight;
   font-size: $small-txt;
-  text-align: left;
   letter-spacing: 1px;
+  @include placement(flex, column, center, center);
+  row-gap: calc(0.25 * $space-base);
 }
 
 form {
-  .lastp {
-    margin: calc(-2 * $space-base) 0 calc(-4 * $space-base) 0;
-  }
   label {
     visibility: hidden;
+    margin-top: calc(-2 * $space-base);
   }
   input, button {
     display: block;
     width: 80%;
+    max-width: 18.75rem;
     height: calc(3 * $space-base);
-    margin: 0 auto;
-    padding-left: calc(0.75 * $space-base);
+    padding-left: $space-base;
     border: 1px solid $body-txt-color;
     background-color: transparent;
     color: inherit;
@@ -478,8 +413,8 @@ form {
   background: center / cover no-repeat url("./farmers-market.jpg"), hsla(162, 63%, 3%, 0.55);
   background-blend-mode: multiply;
   text-align: center;
-  border-bottom: 0.5px solid $body-txt-color;
-  @include place-ctr(flex, center, center);
+  border-top: 0.5px solid $body-txt-color;
+  @include placement(flex);
   flex-direction: column;
   row-gap: calc(3 * $space-base);
   padding: calc(3 * $space-base) $space-base;
@@ -491,8 +426,7 @@ form {
   margin: 0 auto;
   background: center / cover no-repeat url("./bacalaoabras.jpeg"), hsla(0, 0%, 0%, 0.4);
   @include box-shadow();
-  @include place-ctr(flex, center, center);
-  flex-direction: column;
+  @include placement(flex, column);
   row-gap: $space-base;
   letter-spacing: 0.5px;
 }
@@ -518,121 +452,11 @@ form {
 }
 
 footer {
-  //border: 0.5px solid $body-txt-color;
   width: 100%;
-  max-width: 89rem;
+  border-top: 0.5px solid $body-txt-color;
 }
 .copyright {
   width: 100%;
+  padding: calc(2 * $space-base) 0;
   margin: 0 auto;
-  padding: calc(2 * $space-base);
-  text-align: center; 
 }
-
-
-// Desktop version
-.nav-wrapper {
-  @include bp(sprout) {
-    @include position(sticky, $top: 0, $left: 0);
-    width: 89rem;
-    max-width: 100%;
-    margin: 0;
-    height: 6.25rem;
-    background-color: $primary-color-red;
-    border: 0.5px solid $body-txt-color;
-    flex-direction: row;
-    z-index: 5;
-    input, label, .overlay {
-      display: none;
-    }
-  }
-}
-nav {
-  @include bp(sprout) {
-    position: static;
-    width: 89rem;
-    max-width: 100%;
-    height: 6.25rem;
-    padding: 0;
-    @include place-ctr(flex, center, space-between);
-    flex-direction: row;
-    .logo, .nav-menu {
-      @include place-ctr(flex, center, center);
-      flex-direction: row;
-    }
-    .logo-img-wrapper, .logo-name, li {
-      width: 12.5rem;
-      height: 6.25rem;
-      @include place-ctr(flex, center, center);
-      border: none;
-      padding: 0;
-    }
-    .logo-img-wrapper, .logo-name {
-      border-right: 0.5px solid $body-txt-color;
-    }
-    .logo-name {
-      width: 13rem;
-    }
-    .logo-img {
-      padding: 0;
-    }
-    li {
-      border-left: 0.5px solid $body-txt-color;
-    }
-  }
-}
-
-
-.welcome-card {
-  @include bp(seedling) {
-    width: clamp(30rem, 19.8rem + 18vw, 36rem);
-    padding: calc(2.5 * $space-base) calc(2 * $space-base);
-    @include position(absolute, $top: 40%, $right: 5%);
-  }
-}
-
-article {
-  @include bp(sprout) {
-    width: 89rem;
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: 12.5rem 1fr 12.5rem;
-    grid-template-rows: auto;
-    border-bottom: none;
-    padding: 0;
-  }
-}
-.hello, .book-table, .subscribe, footer {
-  @include bp(sprout) {
-    padding: calc(4 * $space-base) calc(0.5 * $space-base);  
-    grid-column: 2 / 3;
-    border-left: 0.5px solid $body-txt-color;
-    border-right: 0.5px solid $body-txt-color;
-  }
-}
-footer {
-  padding: $space-base;
-}
-// Desktop version, side-by-side
-.book-table, .subscribe {
-  @include bp(seedling) {
-    @include place-ctr(flex, center, space-between);
-    flex-direction: row;
-    column-gap: calc(1.5 * $space-base);
-    padding: 0 calc(1.5 * $space-base);
-  }
-  @include bp(sprout) { 
-    padding: calc(3 * $space-base) 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-.hero, .view-menu {
-  @include bp(seedling) {
-    width: 100%;
-    max-width: 89rem;
-    border-left: 0.5px solid $body-txt-color;
-    border-right: 0.5px solid $body-txt-color;
-  }
-}
-*/
