@@ -100,7 +100,7 @@ $space-base: 1rem;
 //Media queries, bp = breakpoint
 @mixin bp($point) {
   @if $point == plant {
-    @media (min-width: 1440px) { @content; }
+    @media (min-width: 1420px) { @content; }
   }
   @else if $point == sprout {
     @media (min-width: 1000px) { @content; }
