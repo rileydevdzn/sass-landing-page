@@ -120,6 +120,10 @@ $space-base: 1rem;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: $primary-color-red;
   font: $font-wt-norm #{$font-sz-base}/#{$body-txt-lnht} $sans-serif;
