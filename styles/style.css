@@ -293,7 +293,10 @@ h2 {
   font-size: clamp(1.625rem, 1.6rem + 0.18vw, 1.75rem);
 }
 
-@media (min-width: 1440px) {
+.intro {
+  border-top: 0.5px solid hsl(32, 100%, 97%);
+}
+@media (min-width: 1400px) {
   .intro {
     display: grid;
     grid-template-columns: 12.5rem 1fr 12.5rem;
@@ -318,7 +321,7 @@ h2 {
     padding-top: 6rem;
   }
 }
-@media (min-width: 1440px) {
+@media (min-width: 1400px) {
   .hello {
     grid-column: 2/3;
     border-left: 0.5px solid hsl(32, 100%, 97%);
@@ -342,7 +345,7 @@ video {
 .reservation, .newsletter {
   border-top: 0.5px solid hsl(32, 100%, 97%);
 }
-@media (min-width: 1440px) {
+@media (min-width: 1400px) {
   .reservation, .newsletter {
     display: grid;
     grid-template-columns: 12.5rem 1fr 12.5rem;
@@ -366,7 +369,7 @@ video {
     justify-content: space-around;
   }
 }
-@media (min-width: 1440px) {
+@media (min-width: 1400px) {
   .book-table, .subscribe {
     grid-column: 2/3;
     border-left: 0.5px solid hsl(32, 100%, 97%);

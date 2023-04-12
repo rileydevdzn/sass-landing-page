@@ -299,6 +299,7 @@ h2 {
 }
 
 .intro {
+  border-top: 0.5px solid $body-txt-color;
   @include bp(plant) {
     display: grid;
     grid-template-columns: 12.5rem 1fr 12.5rem;
