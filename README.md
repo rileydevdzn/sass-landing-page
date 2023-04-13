@@ -5,7 +5,7 @@
     <source media="(max-width: 1199px)" srcset="./sass-landpg-hero-mobile.png"/>
     <source media="(min-width: 1200px)" srcset="./sass-landpg-hero-desktop.png"/>
     <img 
-    src="./sass-landpg-hero-desktop.png"
+    src="./sass-landpg-hero-mobile.png"
     alt="Landing page for a Portuguese restaurant"
     height="350px"
     max-width="100%"/>
@@ -73,12 +73,14 @@ View live page: [SASS Landing Page](https://rileydevdzn.github.io/sass-landing-p
 
 #### *CSS-only mobile hamburger menu*
 
-For this landing page design, JavaScript was a bit overkill for a simple mobile nav menu, so I created one using just CSS. The mobile nav menu slides down from the top of the page when the user taps the hamburger menu (checkbox input + label) and slides back up out of view on second tap.
+For this design, I decided to keep things simple and built the mobile navigation menu using just CSS.
+
+The mobile nav menu slides down from the top of the page when the user taps the hamburger menu (checkbox input + label) and slides back up out of view on second tap.
 
 <div align="center">
   <img
     src="./landpg-mobilemenu-animxn.gif"
-    alt="Mobile version of restaurant landing page showing hamburger menu in upper right corner"
+    alt="Demo of mobile landing page showing hamburger menu functionality"
     width="285px">
   <p><em>Mobile design demo of hamburger menu</em></p>
 </div>
@@ -117,6 +119,8 @@ I then replicated this gridded visual in the sticky horizontal top navigation ba
 ### Challenges
 
 The layout shifts from mobile to desktop were the most difficult part of this project and required the most additional code with media queries. This is an area I'd like to revisit and see if I can create a more flexible design that allows the content to flow more naturally with fewer required explicit declarations.
+
+</br>
 
 ### What I learned
 
@@ -202,11 +206,13 @@ Putting it all together, with arguments and default values along with the mixins
 
 This allowed me to create a consistent appearance aligned with the theme colors and ensure consistent behavior throughout the page. I can also quickly update the appearance and behavior as needed by making a few changes in the mixin that will propagate throughout the page.
 
+</br>
 
 ### Continued development
 
 I'm quite comfortable with the SASS syntax, and my goal now is to improve my skills and write more efficiently. 
 
+</br>
 
 ## Author
 
