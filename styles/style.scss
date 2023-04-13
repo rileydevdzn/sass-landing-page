@@ -157,6 +157,17 @@ h1, h2, p {
   @include button-colors($light-button: true);
 }
 
+.sr-only {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
+
+
 header {
   @include bp(sprout) {
     @include position(sticky, $top: 0);
