@@ -61,8 +61,6 @@ View live page: [SASS Landing Page](https://rileydevdzn.github.io/sass-landing-p
 
 </br>
 
----
-
 </br>
 
 ## Build details
@@ -77,7 +75,7 @@ For this landing page design, JavaScript was a bit overkill for a simple mobile 
   <img
     src="./landpg-mobilemenu-animxn.gif"
     alt="Mobile version of restaurant landing page showing hamburger menu in upper right corner"
-    width="300px">
+    width="285px">
   <p><em>Mobile design demo of hamburger menu</em></p>
 </div>
 
@@ -106,8 +104,7 @@ I then replicated this gridded visual in the sticky horizontal top navigation ba
   <img
     src="./landpg-desktopscroll-animxn.gif"
     alt="Desktop version of restaurant landing page showing additional design details and scroll behavior with sticky top navigation bar"
-    height="350px"
-    max-width="100%">
+    width="100%">
   <p><em>Desktop design demo</em></p>
 </div>
 
