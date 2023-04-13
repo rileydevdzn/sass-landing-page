@@ -28,6 +28,8 @@
   - [Useful resources](#useful-resources)
 - [Author](#author)
 
+</br>
+
 ## Overview
 
 For this project, I created a landing page for a fictional Portuguese restaurant, incorporating a bold but simple color scheme with a lot of visuals.
