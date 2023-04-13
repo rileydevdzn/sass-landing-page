@@ -77,8 +77,7 @@ For this landing page design, JavaScript was a bit overkill for a simple mobile 
   <img
     src="./landpg-mobilemenu-animxn.gif"
     alt="Mobile version of restaurant landing page showing hamburger menu in upper right corner"
-    height="350px"
-    max-width="100%">
+    width="300px">
   <p><em>Mobile design demo of hamburger menu</em></p>
 </div>
 
