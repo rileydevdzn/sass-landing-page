@@ -304,8 +304,10 @@ h2 {
   font-size: clamp(1.625rem, 1.6rem + 0.18vw, 1.75rem);
 }
 
-.intro {
-  border-top: 0.5px solid hsl(32, 100%, 97%);
+@media (min-width: 1000px) {
+  .intro {
+    border-top: 0.5px solid hsl(32, 100%, 97%);
+  }
 }
 @media (min-width: 1400px) {
   .intro {
