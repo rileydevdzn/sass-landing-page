@@ -10,7 +10,7 @@
     height="350px"
     max-width="100%"/>
   </picture>
-  <p>Landing Page Hero</br><em><small>(Hint: if you're on desktop, resize the browser window to see the mobile version)</small></em></p>
+  <p>Landing Page Hero</br><em><small>(if viewing on desktop, resize the browser window to see the mobile version)</small></em></p>
 </div>
 
 </br>
