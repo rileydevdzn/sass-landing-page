@@ -25,7 +25,6 @@
   - [Challenges](#challenges)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 
 </br>
