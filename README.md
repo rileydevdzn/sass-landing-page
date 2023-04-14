@@ -77,6 +77,8 @@ For this design, I decided to keep things simple and built the mobile navigation
 
 The mobile nav menu slides down from the top of the page when the user taps the hamburger menu (checkbox input + label) and slides back up out of view on second tap.
 
+</br>
+
 <div align="center">
   <img
     src="./landpg-mobilemenu-animxn.gif"
